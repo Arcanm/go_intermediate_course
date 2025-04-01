@@ -45,7 +45,8 @@ func (tEmployee TemporaryEmployee) GetMessage() string {
 	)
 }
 
-// Since GetMessage receives a parameter of type PrintInfo, it can accept any type that has the GetMessage() method.
+// Since GetMessage receives a parameter of type PrintInfo,
+// it can accept any type that has the GetMessage() method.
 func GetMessage(p PrintInfo) {
 	fmt.Println(p.GetMessage())
 }
