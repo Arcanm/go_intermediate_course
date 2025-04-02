@@ -1,0 +1,52 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Server With Worker Pools Tour",
+  "steps": [
+    {
+      "file": "Exercises/ServerWithWorkerPools/main.go",
+      "description": "This project implements a web server with a worker pool pattern to handle Fibonacci calculations. The server accepts POST requests with a number, calculates its Fibonacci value using multiple workers, and returns the result.",
+      "line": 1
+    },
+    {
+      "file": "Exercises/ServerWithWorkerPools/main.go",
+      "description": "The Worker struct represents each worker in our pool. It contains:\n- Id: Unique identifier for the worker\n- JobQueue: Channel to receive jobs\n- WorkerPool: Channel to register itself as available\n- QuitChan: Channel to signal worker termination",
+      "line": 17
+    },
+    {
+      "file": "Exercises/ServerWithWorkerPools/main.go",
+      "description": "We define our Job struct that represents a task to be processed. It contains:\n- Number: The Fibonacci number to calculate\n- Name: Identifier for the job\n- Delay: Artificial delay to simulate processing time",
+      "line": 11
+    },
+    {
+      "file": "Exercises/ServerWithWorkerPools/main.go",
+      "description": "The Dispatcher manages the worker pool and job distribution. It contains:\n- WorkerPool: Pool of available worker job queues\n- MaxWorkers: Maximum number of workers\n- JobQueue: Channel where new jobs arrive",
+      "line": 24
+    },
+    {
+      "file": "Exercises/ServerWithWorkerPools/main.go",
+      "description": "Worker.Start() launches the main worker loop. The worker:\n1. Registers its job queue to the worker pool\n2. Waits for either a new job or quit signal\n3. Processes jobs by calculating Fibonacci numbers",
+      "line": 39
+    },
+    {
+      "file": "Exercises/ServerWithWorkerPools/main.go",
+      "description": "The Dispatcher.Dispatch() method handles job distribution:\n1. Continuously monitors the job queue\n2. When a job arrives, gets an available worker\n3. Assigns the job to that worker",
+      "line": 71
+    },
+    {
+      "file": "Exercises/ServerWithWorkerPools/main.go",
+      "description": "RequestHandler processes incoming HTTP requests:\n1. Validates the request is POST\n2. Parses delay, value and name parameters\n3. Creates and queues a new job",
+      "line": 88
+    },
+    {
+      "file": "Exercises/ServerWithWorkerPools/main.go",
+      "description": "The Fibonacci function implements recursive calculation of Fibonacci numbers. This is the actual work being performed by workers.",
+      "line": 122
+    },
+    {
+      "file": "Exercises/ServerWithWorkerPools/main.go",
+      "description": "Main function setup:\n1. Creates job queue and dispatcher\n2. Starts worker pool\n3. Sets up HTTP endpoint\n4. Launches server on port 8081",
+      "line": 129
+    }
+  ],
+  "ref": "main"
+}
